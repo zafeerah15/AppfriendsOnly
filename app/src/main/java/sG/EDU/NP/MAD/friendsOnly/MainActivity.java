@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
+import android.os.Bundle;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
@@ -284,55 +283,11 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_CODE);
         }
     }
+
+    public void ShowStories(View view) {
+        // on below line we are opening a new activity using intent.
+        Intent i = new Intent(MainActivity.this, StoriesActivity.class);
+        startActivity(i);
+    }
 }
 
-//                        databaseReference.child("chat").addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                                int getChatCounts = (int)snapshot.getChildrenCount();
-//
-//                                if (getChatCounts > 0) {
-//                                    for (DataSnapshot dataSnapshot1 : snapshot.getChildren()) {
-//
-//                                        final String getKey = dataSnapshot1.getKey();
-//                                        chatKey = getKey;
-//
-//                                        if (dataSnapshot.hasChild("user_1") && dataSnapshot1.hasChild("user_2") && dataSnapshot1.hasChild("messages")) {
-//                                            final String getUserOne = dataSnapshot1.child("user_1").getValue(String.class);
-//                                            final String getUserTwo = dataSnapshot1.child("user_2").getValue(String.class);
-//
-//                                            if((getUserOne.equals(getMobile) && getUserTwo.equals(mobile)) || (getUserOne.equals(mobile) && getUserTwo.equals(getMobile))) {
-//
-//                                                for(DataSnapshot chatDataSnapshot : dataSnapshot1.child("messages").getChildren()) {
-//
-//                                                    final long getMessageKey = Long.parseLong(chatDataSnapshot.getKey());
-//                                                    final long getLastSeenMessage = Long.parseLong(MemoryData.getLastMsgTS(MainActivity.this, getKey));
-//
-//                                                    lastMessage = chatDataSnapshot.child("msg").getValue(String.class);
-//                                                    if(getMessageKey > getLastSeenMessage) {
-//                                                        unseenMessages++;
-//                                                    }
-//
-//                                                }
-//                                            }
-//                                        }
-//
-//                                    }
-//                                }
-//
-//                                if (!dataSet) {
-//                                    dataSet = true;
-//                                    MessagesList messagesList = new MessagesList(getName, getMobile, lastMessage, getProfilePic, unseenMessages, chatKey);
-//                                    messagesLists.add(messagesList);
-//                                    messagesAdapter.updateData(messagesLists);
-//                                }
-//
-//
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
-//
-//                            }
-//                        });

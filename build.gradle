@@ -5,13 +5,10 @@ buildscript {
         // Check that you have the following line (if not, add it):
 
         google()// Google's Maven repository
-        ///---------------------By Syafiq---------------------------V
-        jcenter()
+
         maven { url 'https://jitpack.io' }
-        ///---------------------By Syafiq---------------------------^
+
         mavenCentral()
-
-
 
     }
    /* plugins {
