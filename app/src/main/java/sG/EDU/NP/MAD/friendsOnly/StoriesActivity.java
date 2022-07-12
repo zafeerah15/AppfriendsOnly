@@ -1,13 +1,14 @@
 package sG.EDU.NP.MAD.friendsOnly;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import jp.shts.android.storiesprogressview.StoriesProgressView;
 public class StoriesActivity extends AppCompatActivity implements StoriesProgressView.StoriesListener {
 

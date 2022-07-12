@@ -37,8 +37,6 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
-    <!--below widget is use to create indicator for our stories at top-->
     <jp.shts.android.storiesprogressview.StoriesProgressView
         android:id="@+id/stories"
         android:layout_width="match_parent"
@@ -47,5 +45,7 @@
         android:layout_marginTop="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp" />
+    <!--below widget is use to create indicator for our stories at top-->
+
 
 </merge>
