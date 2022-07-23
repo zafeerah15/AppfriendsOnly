@@ -45,6 +45,4 @@ dependencies {
     implementation 'com.github.shts:StoriesProgressView:3.0.0'
 
 
-
-
 }
