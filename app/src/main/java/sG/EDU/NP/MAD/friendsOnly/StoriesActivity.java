@@ -1,15 +1,6 @@
 package sG.EDU.NP.MAD.friendsOnly;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import jp.shts.android.storiesprogressview.StoriesProgressView;
 public class StoriesActivity {
     private String imageurl;
     private long timestart;
@@ -17,14 +8,14 @@ public class StoriesActivity {
     private String storyid;
     private String userid;
 
-    public Story(String imageurl, long timestart, long timeend, String storyid, String userid){
+    public void Story(String imageurl, long timestart, long timeend, String storyid, String userid){
         this.imageurl = imageurl;
         this.timestart = timestart;
         this.timeend = timeend;
         this.storyid = storyid;
         this.userid = userid;
     }
-    public Story(){
+    public void Story(){
     }
 
     public String getImageurl(){
