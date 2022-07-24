@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatapp">
         <activity
+            android:name=".StoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".StoriesActivity"
             android:exported="false" />
         <activity

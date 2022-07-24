@@ -1,8 +1,11 @@
 package sG.EDU.NP.MAD.friendsOnly;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 //import android.support.v7.widget.;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -25,8 +28,8 @@ import java.util.List;
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
 
     private android.content.Context mContext;
-    private List<String> mStory;
-    public StoryAdapter(Context mContext, List<String> mStory){
+    private List<Story> mStory;
+    public StoryAdapter(Context mContext, List<Story> mStory){
         this.mContext = mContext;
         this.mStory = mStory;
 
@@ -46,7 +49,27 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        Story story =mStory.get(i);
+        userInfo(viewHolder, story.getUserid(), i);
+        if(viewHolder.getAdapterPosition()!=0){
+            seenStory(viewHolder, story.getUserid());
+        }
+        if(viewHolder.getAdapterPosition()=0){
+            myStory(viewHolder.addstory_text, viewHolder.story_plus, false);
+        }
+        ViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if (viewHolder.getAdapterPosition()==0){
+                    myStory(viewHolder.addstory_text,viewHolder.story_plus, true);
+                } else{
+                    Intent intent = new Intent(mContext, StoryActivity.class);
+                    intent.putExtra("userid", story.getStoryid());
+                    mContext.startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -84,9 +107,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Glide.with(mContext).load(user.getImageurl()).into(viewHolder.story_photo_seen);
+                Glide.with(mContext).load(user.getImageurl()).into(viewHolder.story_photo);
                 if(pos != 0){
-                    Glide.with(mContext).load(user.getImageurl()).into(viewHolder.story_photo);
+                    Glide.with(mContext).load(user.getImageurl()).into(viewHolder.story_photo_seen);
                     viewHolder.story_username.setText(user.getUsername());
                 }
             }
@@ -113,6 +136,32 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
                 }
 
                 if (click){
+                    if(count>0){
+                        AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "View story",
+                                new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i){
+                                        Intent intent = new Intent(mContext, StoryActivity.class);
+                                        intent.putExtra("userid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        mContext.startActivity(intent);
+                                        dialogInterface.dismiss();
+                            }
+                                });
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Add story",
+                                new DialogInterface.OnClickListener(){
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i){
+                                        Intent intent = new Intent(mContext, AddStoryActivity.class);
+                                        mContext.startActivity(intent);
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+                    } else{
+                        Intent intent = new Intent(mContext, AddStoryActivity.class);
+                        mContext.startActivity(intent);
+                    }
 
                 }
                 else {
@@ -145,6 +194,13 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
                             System.currentTimeMillis() < snapshot.getValue(Story.class).get.Timeend()){
                         i++;
                     }
+                }
+                if(i>0){
+                    viewHolder.story_photo.setVisibility(View.VISIBLE);
+                    viewHolder.story_photo_seen.setVisibility(View.GONE);
+                } else{
+                    viewHolder.story_photo.setVisibilitiy(View.GONE);
+                    viewHolder.story_photo.setVisibilitiy(View.VISIBLE);
                 }
             }
 
