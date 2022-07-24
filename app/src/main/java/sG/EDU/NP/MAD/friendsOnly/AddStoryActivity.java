@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 
+
 import java.util.HashMap;
 
 public class AddStoryActivity extends AppCompatActivity {
@@ -63,15 +64,14 @@ public class AddStoryActivity extends AppCompatActivity {
                     return imageReference.getDownloadUrl();
                 }).addOnCompleteListener(new OnCompleteListener(){
                     @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
+                    public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
-                            Uri downloadUri = task.getResult();
+                            Uri downloadUri = (Uri) task.getResult();
                             myUrl = downloadUri.toString();
 
                             String myid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story");
-                        .child(myid);
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story").child(myid);
 
                             String storyid = reference.push().getKey();
                             long timeend = System.currentTimeMillis() + 86400000;
