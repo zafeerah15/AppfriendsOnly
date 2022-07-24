@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:andriod="http://schemas.android.com/apk/res/android"
+    andriod:layout_width="60dp"
+    andriod:orientation="vertical"
+    andriod:layout_marginStart="10dp"
+    andriod:layout_height="wrap_content">
+    
+    <RelativeLayout
+        andriod:layout_width="50dp"
+        andriod:layout_height="50dp"
+        andriod:layout_gravity="center"
+        andriod:layout_marginTop="5dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            andriod:layout_width="45dp"
+            andriod:layout_height="45dp"
+            andriod:layout_alignParentTop="true"
+            andriod:layout_centerHorizontal="true"
+            andriod:src="@drawable/placeholder"
+            andriod:id="@+id/story_photo"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            andriod:layout_width="20dp"
+            andriod:layout_height="20dp"
+            andriod:src="@drawable/add_story_foreground"
+            andriod:id="@+id/story_plus"
+            andriod:layout_alignParentBottom="true"
+            andriod:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        andriod:layout_width="wrap_content"
+        andriod:layout_height="wrap_content"
+        andriod:id="@+id/addstory_text"
+        andriod:textColor="@color/design_default_color_primary_dark"
+        andriod:layout_gravity="center"
+        andriod:maxLines="1"/>
+</LinearLayout>
