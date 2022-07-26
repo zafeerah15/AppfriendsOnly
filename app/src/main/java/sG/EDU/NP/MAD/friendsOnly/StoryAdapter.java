@@ -49,6 +49,11 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     }
 
     @Override
+    public void onBindViewHolder(@androidx.annotation.NonNull viewHolder holder, int position) {
+
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Story story =mStory.get(i);
         userInfo(viewHolder, story.getUserid(), i);
@@ -90,6 +95,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
             story_photo_seen = itemView.findViewById(R.id.story_photo_seen);
             story_username = itemView.findViewById(R.id.story_username);
             addstory_text = itemView.findViewById(R.id.addstory_text);
+        }
+
+        public viewHolder(View view) {
+            super(view);
         }
     }
 
